@@ -1,0 +1,738 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>client替换法 · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="section2.html" />
+    
+    
+    <link rel="prev" href="../section1.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../chapter1/">
+            
+                <a href="../../chapter1/">
+            
+                    
+                    配置rally
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../chapter1/install/">
+            
+                <a href="../../chapter1/install/">
+            
+                    
+                    安装
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="../../chapter1/install/script.html">
+            
+                <a href="../../chapter1/install/script.html">
+            
+                    
+                    脚本安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="../../chapter1/install/docker.html">
+            
+                <a href="../../chapter1/install/docker.html">
+            
+                    
+                    docker安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="../../chapter1/install/devstack.html">
+            
+                <a href="../../chapter1/install/devstack.html">
+            
+                    
+                    devstack安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../chapter1/database/">
+            
+                <a href="../../chapter1/database/">
+            
+                    
+                    数据库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="../../chapter1/database/create.html">
+            
+                <a href="../../chapter1/database/create.html">
+            
+                    
+                    创建数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2" data-path="../../chapter1/database/update.html">
+            
+                <a href="../../chapter1/database/update.html">
+            
+                    
+                    升级数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../chapter1/deployment/">
+            
+                <a href="../../chapter1/deployment/">
+            
+                    
+                    部署
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="../../chapter1/deployment/tmp_user.html">
+            
+                <a href="../../chapter1/deployment/tmp_user.html">
+            
+                    
+                    使用临时用户
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="../../chapter1/deployment/exsiting_user.html">
+            
+                <a href="../../chapter1/deployment/exsiting_user.html">
+            
+                    
+                    使用已存在用户
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../chapter2/">
+            
+                <a href="../../chapter2/">
+            
+                    
+                    Rally流程简介
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../chapter2/section1.html">
+            
+                <a href="../../chapter2/section1.html">
+            
+                    
+                    Rally测试流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../chapter2/section2.html">
+            
+                <a href="../../chapter2/section2.html">
+            
+                    
+                    Rally开发流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Rally二次开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../section1.html">
+            
+                <a href="../section1.html">
+            
+                    
+                    准备工作
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.1.1" data-path="section1.html">
+            
+                <a href="section1.html">
+            
+                    
+                    client替换法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="section2.html">
+            
+                <a href="section2.html">
+            
+                    
+                    API添加法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../section2.html">
+            
+                <a href="../section2.html">
+            
+                    
+                    scenario插件开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../section3.html">
+            
+                <a href="../section3.html">
+            
+                    
+                    context插件开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../section4.html">
+            
+                <a href="../section4.html">
+            
+                    
+                    sla插件开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../section5.html">
+            
+                <a href="../section5.html">
+            
+                    
+                    runner插件开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../section6.html">
+            
+                <a href="../section6.html">
+            
+                    
+                    其他
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../end/">
+            
+                <a href="../../end/">
+            
+                    
+                    结束
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >client替换法</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x66FF;&#x6362;&#x6CD5;">&#x66FF;&#x6362;&#x6CD5;</h1><p>&#x4F18;&#x70B9;&#xFF1A;&#x6B64;&#x65B9;&#x6CD5;&#x53EF;&#x76F4;&#x63A5;&#x66FF;&#x6362;client&#xFF0C;&#x5F53;&#x6709;&#x5927;&#x91CF;&#x975E;&#x539F;&#x751F;api&#x65F6;&#x8F83;&#x4E3A;&#x7B80;&#x5355;&#x3002;
+&#x7F3A;&#x70B9;&#xFF1A;rally&#x8F83;&#x65B0;&#x7684;&#x7248;&#x672C;&#xFF0C;&#x4F7F;&#x7528;&#x65E7;&#x7248;&#x672C;client&#x66FF;&#x6362;&#x90E8;&#x5206;&#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x5404;&#x4E2A;&#x7EC4;&#x4EF6;&#x95F4;&#x7684;&#x51B2;&#x7A81;&#xFF0C;&#x4E0D;&#x6613;&#x89E3;&#x51B3;&#x3002;</p><h2 id="neutronclient">NeutronClient</h2><ul><li><p>&#x4F7F;&#x7528;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4E2D;neutronclient&#x5305;&#x66FF;&#x6362;rally&#x4E2D;neutronclient&#x5305;</p><pre><code>cd rally/lib/python2.7/site-packages/;mv neutronclient neutronclient_bak
+scp -r root@node-17:/usr/lib/python2.7/site-packages/neutronclient ./
+</code></pre>
+<h2 id="novaclient">NovaClient</h2><p>&#x548C;NeutronClient&#x7C7B;&#x4F3C;NovaClient &#x7684;&#x63A5;&#x53E3;&#x6574;&#x5408;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7C7B;&#x4F3C;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x8FC7;&#x9700;&#x8981;&#x89E3;&#x51B3;&#x4E00;&#x4E9B;rally&#x8C03;&#x7528;novaclient&#x7684;&#x4F9D;&#x8D56;&#x95EE;&#x9898;&#x4E0E;&#x8BA4;&#x8BC1;&#x95EE;&#x9898;&#xFF0C;&#x5177;&#x4F53;&#x6B65;&#x9AA4;&#x5982;&#x4E0B;&#xFF1A;</p></li>
+<li><p>&#x5907;&#x4EFD;rally novaclient&#xFF0C;&#x540C;&#x65F6;&#x62F7;&#x8D1D;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4E2D;&#x7684;novaclient&#x5230;<code>rally/lib/python2.7/site-packages/</code>&#x76EE;&#x5F55;&#x4E0B;&#x3002;</p><pre><code>cd rally/lib/python2.7/site-packages/
+mv novaclient novaclient_bak
+scp -r root@node-17:/usr/lib/python2.7/site-packages/novaclient ./ 
+</code></pre>
+<ul><li><p>&#x89E3;&#x51B3;oslo&#x5305;&#x4F9D;&#x8D56;&#x95EE;&#x9898;</p></li>
+<li><p>&#x4FEE;&#x6539;novaclient&#x4E2D;&#x5BF9;oslo&#x5305;&#x7684;&#x5F15;&#x7528;&#x66F4;&#x6539;&#x4E3A;&#x5BF9;rally oslo&#x76F8;&#x5173;&#x5305;&#x7684;&#x4F9D;&#x8D56;
+    cd ~/rally/lib/python2.7/site-packages/novaclient
+    sed -i s/&quot;oslo.&quot;/&quot;oslo_&quot;/g <code>grep &quot;oslo.&quot; -rl --include=&quot;*.py&quot; ./</code></p></li></ul>
+</li></ul>
+<ul><li><p>&#x7531;&#x4E8E;rally&#x8C03;&#x7528;&#x65B0;&#x7248;&#x672C;client&#x65F6;&#x4F1A;&#x4F20;&#x9012;&#x4E00;&#x4E9B;&#x65E7;&#x7248;&#x672C;&#x6CA1;&#x6709;&#x7684;&#x5173;&#x952E;&#x5B57;&#x53C2;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5BF9;Client&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x907F;&#x514D;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x51B2;&#x7A81;&#xFF1A;</p><pre><code># &#x589E;&#x52A0;**kwargs&#x7528;&#x6765;&#x83B7;&#x53D6;rally&#x63D0;&#x4F9B;&#x7684;&#x989D;&#x5916;&#x5173;&#x952E;&#x5B57;&#x53C2;&#x6570;&#x3002;
+def __init__(self, username=None, api_key=None, project_id=None,
+             auth_url=None, insecure=False, timeout=None,
+             proxy_tenant_id=None, proxy_token=None, region_name=None,
+             endpoint_type=&apos;publicURL&apos;, extensions=None,
+             service_type=&apos;compute&apos;, service_name=None,
+             volume_service_name=None, timings=False, bypass_url=None,
+             os_cache=False, no_cache=True, http_log_debug=False,
+             auth_system=&apos;keystone&apos;, auth_plugin=None, auth_token=None,
+             cacert=None, tenant_id=None, user_id=None,
+             connection_pool=False, session=None, auth=None,
+             completion_cache=None, **kwargs):
+</code></pre>
+</li></ul>
+<h2 id="cinderclient">CinderClient</h2><p>CinderClient&#x548C;NeutronClient&#x76F8;&#x540C;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5C06;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4E2D;&#x7684;cinderclient&#x590D;&#x5236;&#x5230;rally&#x4E2D;&#xFF0C;&#x5177;&#x4F53;&#x5982;&#x4E0B;&#xFF1A;</p><pre><code>  cd rally/lib/python2.7/site-packages/;mv neutronclient neutronclient_bak
+  scp -r root@node-17:/usr/lib/python2.7/site-packages/neutronclient ./</code></pre>
+<h2 id="ceilometerclient">CeilometerClient</h2><ol><li><p>&#x5907;&#x4EFD;Rally CeilometeClient&#xFF0C;&#x5C06;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4E2D;&#x7684;CeilometerClient&#x590D;&#x5236;&#x5230;Rally&#x76EE;&#x5F55;&#x4E0B;&#x3002;</p><pre><code>    cd rally/lib/python2.7/site-packages/;mv ceilometerclient ceilometerclient_bak
+    scp -r root@node-17:/usr/lib/python2.7/site-packages/ceilometerclient ./
+</code></pre>
+<ol><li>&#x7531;&#x4E8E;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4E2D;&#x7684;Ceilometer&#x91C7;&#x7528;&#x81EA;&#x8EAB;&#x8C03;&#x7528;keystoneclient&#x8FDB;&#x884C;&#x8BA4;&#x8BC1;&#x800C;&#x4E0D;&#x662F;&#x4F7F;&#x7528;rally&#x63D0;&#x4F9B;&#x7684;keystone session&#x8FDB;&#x884C;&#x8BA4;&#x8BC1;&#xFF0C;&#x9700;&#x8981;&#x5BF9;&#x8FD9;&#x4E00;&#x70B9;&#x8FDB;&#x884C;&#x8C03;&#x6574;&#x3002;
+</li></ol>
+<pre><code>vim rally/lib/python2.7/site-packages/rally/osclient.py
+
+class Ceilometer(OSClient):
+    def create_client(self, version=None, service_type=None):
+        &quot;&quot;&quot;Return ceilometer client.&quot;&quot;&quot;
+        from ceilometerclient import client as ceilometer
+
+        #&#x65B0;&#x589E;&#x8BA4;&#x8BC1;&#x7528;&#x53C2;&#x6570;
+        cli_kwargs = {
+            &apos;username&apos;: self.credential.username,
+            &apos;password&apos;: self.credential.password,
+            &apos;tenant_id&apos;: self.keystone.auth_ref.project_id,
+            &apos;tenant_name&apos;: self.credential.tenant_name,
+            &apos;auth_url&apos;: self.credential.auth_url,
+            &apos;region_name&apos;: self.credential.region_name,
+            &apos;service_type&apos;: service_type,
+            &apos;endpoint_type&apos;: self.credential.endpoint_type,
+            &apos;cacert&apos;: self.credential.cacert,
+            &apos;cert_file&apos;: None,
+            &apos;key_file&apos;: None,
+            &apos;token&apos;: self.keystone.auth_ref.auth_token,
+        }
+        #&#x65B0;&#x589E;&#x8BA4;&#x8BC1;&#x6B65;&#x9AA4;
+        client = ceilometer.get_client(
+            self.choose_version(version),
+            **cli_kwargs)
+        return client
+
+    #&#x539F;&#x6709;&#x8BA4;&#x8BC1;&#x6B65;&#x9AA4;
+    # client = ceilometer.get_client(
+    #     self.choose_version(version),
+    #     session=self.keystone.get_session()[0],
+    #     endpoint_override=self._get_endpoint(service_type))
+    # return client
+</code></pre>
+</li></ol>
+<h2 id="glanceclient">GlanceClient</h2><p>&#x4E0E;CeilometerClient&#x7C7B;&#x4F3C;&#xFF0C;GlanceClient&#x540C;&#x6837;&#x9700;&#x8981;&#x4FEE;&#x6539;rally&#x7684;&#x8BA4;&#x8BC1;&#x6B65;&#x9AA4;&#xFF0C;&#x5177;&#x4F53;&#x5982;&#x4E0B;&#x3002;</p><ol><li><p>&#x5907;&#x4EFD;Rally GlanceClient&#xFF0C;&#x5C06;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4E2D;&#x7684;GlanceClient&#x590D;&#x5236;&#x5230;Rally&#x76EE;&#x5F55;&#x4E0B;&#x3002;</p><pre><code>cd rally/lib/python2.7/site-packages/;mv glanceclient glanceclient_bak
+scp -r root@node-17:/usr/lib/python2.7/site-packages/glanceclient ./</code></pre>
+<ol><li>&#x4FEE;&#x6539;rally&#x4F20;&#x9012;&#x7ED9;glanceclient&#x7684;&#x8BA4;&#x8BC1;&#x53C2;&#x6570;&#x3002;
+</li></ol>
+<pre><code>vim rally/lib/python2.7/site-packages/rally/osclient.py
+
+@configure(&quot;glance&quot;, default_version=&quot;1&quot;, default_service_type=&quot;image&quot;,
+       supported_versions=[&quot;1&quot;, &quot;2&quot;])
+class Glance(OSClient):
+    def create_client(self, version=None, service_type=None):
+        &quot;&quot;&quot;Return glance client.&quot;&quot;&quot;
+        import glanceclient as glance
+
+        # session = self.keystone.get_session()[0]
+        # client = glance.Client(
+        #    version=self.choose_version(version),
+        #    endpoint_override=self._get_endpoint(service_type),
+        #    session=session)
+        # return client
+        cli_kwargs = {
+            &apos;username&apos;: self.credential.username,
+            &apos;password&apos;: self.credential.password,
+            &apos;tenant_id&apos;: self.keystone.auth_ref.project_id,
+            &apos;tenant_name&apos;: self.credential.tenant_name,
+            &apos;auth_url&apos;: self.credential.auth_url,
+            &apos;region_name&apos;: self.credential.region_name,
+            &apos;service_type&apos;: service_type,
+            &apos;endpoint_type&apos;: self.credential.endpoint_type,
+            &apos;cacert&apos;: self.credential.cacert,
+            &apos;cert_file&apos;: None,
+            &apos;key_file&apos;: None,
+            &apos;token&apos;: self.keystone.auth_ref.auth_token,
+        }
+
+        client = glance.Client(
+            self.choose_version(version),
+            endpoint=self._get_endpoint(service_type),
+            **cli_kwargs)
+        return client
+</code></pre>
+</li></ol>
+<h2 id="keystoneclient">KeystoneClient</h2><ol><li><p>&#x590D;&#x5236;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4E2D;&#x7684;Keystoneclient&#x5230;rally&#x76EE;&#x5F55;&#x4E0B;&#x3002;</p><pre><code>cd rally/lib/python2.7/site-packages/;mv keystoneclient keystoneclient_bak
+scp -r root@node-17:/usr/lib/python2.7/site-packages/keystoneclient ./
+</code></pre>
+<ol><li>&#x4F7F;rally&#x4F7F;&#x7528;eayun&#x7248;&#x672C;&#x7684;Keystoneclient&#x3002;
+</li></ol>
+<pre><code>vim rally/lib/python2.7/site-packages/rally/osclient.py
+
+def create_client(self, version=None):
+    &quot;&quot;&quot;Return a keystone client.
+
+    :param version: Keystone API version, can be one of:
+        (&quot;2&quot;, &quot;3&quot;)
+
+    If this object was constructed with a version in the api_info
+    then that will be used unless the version parameter is passed.
+    &quot;&quot;&quot;
+    import keystoneclient
+    from keystoneclient import client
+
+    # Use the version in the api_info if provided, otherwise fall
+    # back to the passed version (which may be None, in which case
+    # keystoneclient chooses).
+    version = self.choose_version(version)
+
+    sess = self.get_session(version=version)[0]
+
+    kw = {&quot;version&quot;: version, &quot;session&quot;: sess,
+          &quot;timeout&quot;: CONF.openstack_client_http_timeout}
+    if keystoneclient.__version__[0] in (&quot;0&quot;, &quot;1&quot;):
+        # &#x589E;&#x52A0;Keystone0.x.x&#x7248;&#x672C;(eayun&#x4F7F;&#x7528;&#x7684;&#x7248;&#x672C;)
+        # NOTE(andreykurilin): let&apos;s leave this hack for envs which uses
+        #  old(&lt;2.0.0 eayun is 0.11.1) keystoneclient version. Upstream fix:
+        #  https://github.com/openstack/python-keystoneclient/commit/d9031c252848d89270a543b67109a46f9c505c86
+        from keystoneauth1 import plugin
+        kw[&quot;auth_url&quot;] = sess.get_endpoint(interface=plugin.AUTH_INTERFACE)
+    if self.credential.endpoint_type:
+        kw[&quot;endpoint_type&quot;] = self.credential.endpoint_type
+    return client.Client(**kw)</code></pre>
+</li></ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../section1.html" class="navigation navigation-prev " aria-label="Previous page: 准备工作">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="section2.html" class="navigation navigation-next " aria-label="Next page: API添加法">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"client替换法","level":"1.4.1.1","depth":3,"next":{"title":"API添加法","level":"1.4.1.2","depth":3,"path":"chapter3/chapter1/section2.md","ref":"chapter3/chapter1/section2.md","articles":[]},"previous":{"title":"准备工作","level":"1.4.1","depth":2,"path":"chapter3/section1.md","ref":"chapter3/section1.md","articles":[{"title":"client替换法","level":"1.4.1.1","depth":3,"path":"chapter3/chapter1/section1.md","ref":"chapter3/chapter1/section1.md","articles":[]},{"title":"API添加法","level":"1.4.1.2","depth":3,"path":"chapter3/chapter1/section2.md","ref":"chapter3/chapter1/section2.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter3/chapter1/section1.md","mtime":"2017-04-07T01:54:18.823Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-05-16T02:52:42.035Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

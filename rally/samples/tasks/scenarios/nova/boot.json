@@ -1,0 +1,33 @@
+{% set flavor_name = flavor_name or "m1.tiny" %}
+{
+    "NovaServers.boot_server": [
+        {
+            "args": {
+                "flavor": {
+                    "name": "{{flavor_name}}"
+                },
+                "block_device_mapping_v2": [
+                    {
+                        "boot_index": "0",
+                        "uuid": "0face2c5-58c2-44a4-90bb-43bb6ddf1489",
+                        "source_type": "image",
+                        "volume_size": "5",
+                        "destination_type": "volume",
+                        "delete_on_termination": true
+                    }                
+                ]
+             }
+            },
+            "runner": {
+                "type": "constant",
+                "times": 10,
+                "concurrency": 2
+            },
+            "context": {
+                "users": {
+                    "tenants": 3,
+                    "users_per_tenant": 2
+                }
+            }
+    ]
+}

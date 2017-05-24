@@ -1,0 +1,58 @@
+Metadata-Version: 2.0
+Name: gnocchiclient
+Version: 3.1.1
+Summary: Python client library for Gnocchi
+Home-page: http://docs.openstack.org/developer/python-gnocchiclient/
+Author: OpenStack
+Author-email: openstack-dev@lists.openstack.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: OpenStack
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: cliff (>1.16.0)
+Requires-Dist: futurist
+Requires-Dist: keystoneauth1 (>=2.0.0)
+Requires-Dist: osc-lib (>=0.3.0)
+Requires-Dist: oslo.serialization (>=1.4.0)
+Requires-Dist: oslo.utils (>=2.0.0)
+Requires-Dist: pbr (>=1.4)
+Requires-Dist: six
+Provides-Extra: doc
+Requires-Dist: doc8; extra == 'doc'
+Requires-Dist: openstack-doc-tools (>=1.0.1); extra == 'doc'
+Requires-Dist: oslosphinx (>=2.5.0); extra == 'doc'
+Requires-Dist: sphinx (!=1.2.0,!=1.3b1,>=1.1.2); extra == 'doc'
+Provides-Extra: test
+Requires-Dist: coverage (>=3.6); extra == 'test'
+Requires-Dist: oslotest (>=1.10.0); extra == 'test'
+Requires-Dist: python-subunit (>=0.0.18); extra == 'test'
+Requires-Dist: tempest (>=10); extra == 'test'
+Requires-Dist: testrepository (>=0.0.18); extra == 'test'
+Requires-Dist: testtools (>=1.4.0); extra == 'test'
+
+=============
+gnocchiclient
+=============
+
+Python bindings to the OpenStack Gnocchi API
+
+This is a client for OpenStack gnocchi API. There's :doc:`a Python API
+<api>` (the :mod:`gnocchiclient` module), and a :doc:`command-line script
+<shell>` (installed as :program:`gnocchi`). Each implements the entire
+OpenStack Gnocchi API.
+
+* Free software: Apache license
+* Documentation: http://docs.openstack.org/developer/python-gnocchiclient
+* Source: http://git.openstack.org/cgit/openstack/python-gnocchiclient
+* Bugs: http://bugs.launchpad.net/python-gnocchiclient
+
+
+
