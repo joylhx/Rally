@@ -10,7 +10,7 @@ class CreatePoolAndDelete(scenario.OpenStackScenario):
     @atomic.action_timer("create_pool")
     def _create_pool(self, body):
         client = self.clients("neutron")
-        pool = client.neutron.get(self.context['pool'])
+        pool = client.get(self.context['pool'])
         client.create_pool(pool, body)
 
     @atomic.action_timer("delete_pool")
@@ -29,7 +29,7 @@ class CreateMemberAndDelete(scenario.OpenStackScenario):
     @atomic.action_timer("create_member")
     def _create_member(self, body):
         client = self.clients("neutron")
-        member = client.neutron.get(self.context['member'])
+        member = client.get(self.context['member'])
         client.create_member(member, body)
 
     @atomic.action_timer("delete_member")
@@ -46,7 +46,7 @@ class CreateVipAndDelete(scenario.OpenStackScenario):
     @atomic.action_timer("create_vip")
     def _create_vip(self, body):
         client = self.clients("neutron")
-        vip = client.neutron.get(self.context['vip'])
+        vip = client.get(self.context['vip'])
         client.create_vip(vip, body)
 
     @atomic.action_timer("delete_vip")
@@ -63,7 +63,7 @@ class CreateHealthmonitorAndDelete(scenario.OpenStackScenario):
     @atomic.action_timer("create_healthmonitor")
     def _create_healthmonitor(self, body):
         client = self.clients("neutron")
-        healthmonitor = client.neutron.get(self.context['healthmonitor'])
+        healthmonitor = client.get(self.context['healthmonitor'])
         client.create_health_monitor(healthmonitor, body)
 
     @atomic.action_timer("delete_healthmonitor")
@@ -94,7 +94,7 @@ class AssociateFloatingipForVip(scenario.OpenStackScenario):
     @atomic.action_timer("associate_floatingip_for_vip")
     def _associate_floatingip_for_vip(self, vip, **kwargs):
         client = self.clients("neutron")
-        list_vip = client.neutron.get(vip["id"])
+        list_vip = client.get(vip["id"])
         if self.context.get('floatingip'):
             neutron = client.Clients(self.context['users'][0]['credential']).neutron()
             for port in neutron.list_ports()['ports']:
