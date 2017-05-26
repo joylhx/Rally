@@ -8,16 +8,16 @@ from rally.task import atomic
 class CreatePoolAndDelete(scenario.OpenStackScenario):
 
     @atomic.action_timer("create_pool")
-    def _create_pool(self, kwargs=None):
+    def _create_pool(self, body):
         client = self.clients("neutron")
-        client.create_pool(kwargs)
+        client.create_pool(body)
 
     @atomic.action_timer("delete_pool")
     def _delete_pool(self):
         self.clients("neutron").delete_pool(self.context["pool"], ["id"])
         #self.clients("neutron").delete_pool(pool["id"])
 
-    def run(self, kwargs=None):
+    def run(self, **kwargs):
         self._create_pool(kwargs)
         self._delete_pool()
 
