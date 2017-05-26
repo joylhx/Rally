@@ -17,8 +17,8 @@ class CreatePoolAndDelete(scenario.OpenStackScenario):
         self.clients("neutron").delete_pool(self.context["pool"], ["id"])
         #self.clients("neutron").delete_pool(pool["id"])
 
-    def run(self, **kwargs):
-        self._create_pool(kwargs)
+    def run(self, body):
+        self._create_pool(body)
         self._delete_pool()
 
 
