@@ -10,7 +10,7 @@ class CreatePoolAndDelete(scenario.OpenStackScenario):
     @atomic.action_timer("create_pool")
     def _create_pool(self, kwargs=None):
         client = self.clients("neutron")
-        client.create_pool(kwargs=kwargs)
+        client.create_pool(kwargs)
 
     @atomic.action_timer("delete_pool")
     def _delete_pool(self):
@@ -18,7 +18,7 @@ class CreatePoolAndDelete(scenario.OpenStackScenario):
         #self.clients("neutron").delete_pool(pool["id"])
 
     def run(self, kwargs=None):
-        self._create_pool(kwargs=kwargs)
+        self._create_pool(kwargs)
         self._delete_pool()
 
 
