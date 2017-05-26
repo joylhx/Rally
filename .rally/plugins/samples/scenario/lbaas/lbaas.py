@@ -8,19 +8,18 @@ from rally.task import atomic
 class CreatePoolAndDelete(scenario.OpenStackScenario):
 
     @atomic.action_timer("create_pool")
-    def _create_pool(self, body):
+    def _create_pool(self, kwargs=None):
         client = self.clients("neutron")
-        pool = client.get(self.context['pool'])
-        client.create_pool(pool, body)
+        client.create_pool(kwargs=kwargs)
 
     @atomic.action_timer("delete_pool")
-    def _delete_pool(self, pool):
+    def _delete_pool(self):
         self.clients("neutron").delete_pool(self.context["pool"], ["id"])
         #self.clients("neutron").delete_pool(pool["id"])
 
-    def run(self, pool):
-        self._create_pool(pool)
-        self._delete_pool(pool)
+    def run(self, kwargs=None):
+        self._create_pool(kwargs=kwargs)
+        self._delete_pool()
 
 
 @scenario.configure(name="Neutron.create_member_and_delete")
@@ -29,16 +28,15 @@ class CreateMemberAndDelete(scenario.OpenStackScenario):
     @atomic.action_timer("create_member")
     def _create_member(self, body):
         client = self.clients("neutron")
-        member = client.get(self.context['member'])
-        client.create_member(member, body)
+        client.create_member(body=body)
 
     @atomic.action_timer("delete_member")
     def _delete_member(self, member):
         self.clients("neutron").delete_member(self.context["member"], ["id"])
 
-    def run(self, member):
-        self._create_member(member)
-        self._delete_member(member)
+    def run(self, body):
+        self._create_member(body=body)
+        self._delete_member()
 
 @scenario.configure(name="Neutron.create_vip_and_delete")
 class CreateVipAndDelete(scenario.OpenStackScenario):
@@ -46,16 +44,15 @@ class CreateVipAndDelete(scenario.OpenStackScenario):
     @atomic.action_timer("create_vip")
     def _create_vip(self, body):
         client = self.clients("neutron")
-        vip = client.get(self.context['vip'])
-        client.create_vip(vip, body)
+        client.create_vip(body)
 
     @atomic.action_timer("delete_vip")
     def _delete_vip(self, vip):
         self.clients("neutron").delete_vip(self.context["vip"], ["id"])
 
-    def run(self, vip):
-        self._create_vip(vip)
-        self._delete_vip(vip)
+    def run(self, body):
+        self._create_vip(body)
+        self._delete_vip(body)
 
 @scenario.configure(name="Neutron.create_healthmonitor_and_delete")
 class CreateHealthmonitorAndDelete(scenario.OpenStackScenario):
@@ -63,16 +60,15 @@ class CreateHealthmonitorAndDelete(scenario.OpenStackScenario):
     @atomic.action_timer("create_healthmonitor")
     def _create_healthmonitor(self, body):
         client = self.clients("neutron")
-        healthmonitor = client.get(self.context['healthmonitor'])
-        client.create_health_monitor(healthmonitor, body)
+        client.create_health_monitor(body)
 
     @atomic.action_timer("delete_healthmonitor")
     def _delete_healthmonitor(self, healthmonitor):
         self.clients("neutron").delete_health_monitor(self.context["healthmonitor"], ["id"])
 
-    def run(self, healthmonitor):
-        self._create_health_monitor(healthmonitor)
-        self._delete_health_monitor(healthmonitor)
+    def run(self, body):
+        self._create_health_monitor(body)
+        self._delete_health_monitor(body)
 
 
 @scenario.configure(name="Neutron.list_multiple")
