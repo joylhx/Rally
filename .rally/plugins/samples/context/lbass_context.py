@@ -164,7 +164,7 @@ class CreateLbPool(context.Context):
     def setup(self):
         try:
             neutron = osclients.Clients(self.context["users"][0]['credential']).neutron()
-            body = {
+            kwargs = {
                 "pool": {
                     "name": self.config.get("name"),
                     "lb_method": self.config.get("lb_method"),
@@ -172,7 +172,7 @@ class CreateLbPool(context.Context):
                     "subnet_id": self.config.get("subnet_id")
                 }
             }
-            lb_pool = neutron.create_lb_pool(body)['pool']
+            lb_pool = neutron.create_pool(kwargs)
             self.context['pool'] = lb_pool
             LOG.debug("LbPool with id '%s'" % lb_pool['id'])
         except Exception as e:
