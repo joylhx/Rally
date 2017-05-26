@@ -14,7 +14,6 @@
                 "name": "test-pool",
                 "lb_method": "ROUND_ROBIN",
                 "protocol": "HTTP",
-                "subnet_id": "",
                 "admin_state_up": true
             },
             "context": {
@@ -42,7 +41,6 @@
                 "name": "test-pool",
                 "lb_method": "SOURCE_IP",
                 "protocol": "HTTPS",
-                "subnet_id": "",
                 "admin_state_up": true
             },
             "context": {
@@ -70,7 +68,6 @@
                 "name": "test-pool",
                 "lb_method": "LEAST_CONNECTIONS",
                 "protocol": "TCP",
-                "subnet_id": "",
                 "admin_state_up": true
             },
             "context": {
