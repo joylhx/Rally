@@ -11,11 +11,13 @@
     "Neutron.create_pool_and_delete": [
         {
             "args": {
-                "name": "test-pool",
-                "lb_method": "ROUND_ROBIN",
-                "protocol": "HTTP",
-                "subnet_id": "",
-                "admin_state_up": true
+                "body": {
+                    "name": "test-pool",
+                    "lb_method": "ROUND_ROBIN",
+                    "protocol": "HTTP",
+                    "subnet_id": "",
+                    "admin_state_up": true
+                }
             },
             "context": {
                 "create_network": {
