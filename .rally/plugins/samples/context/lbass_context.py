@@ -164,15 +164,15 @@ class CreateLbPool(context.Context):
     def setup(self):
         try:
             neutron = osclients.Clients(self.context["users"][0]['credential']).neutron()
-            kwargs = {
+            body = {
                 "pool": {
                     "name": self.config.get("name"),
                     "lb_method": self.config.get("lb_method"),
                     "protocol": self.config.get("protocol"),
-                    "subnet_id": self.config.get("subnet_id")
+                    "subnet_id": self.config.get("subnet_id", self.context["user_subnet"])
                 }
             }
-            lb_pool = neutron.create_pool(kwargs)
+            lb_pool = neutron.create_pool(body)
             self.context['pool'] = lb_pool
             LOG.debug("LbPool with id '%s'" % lb_pool['id'])
         except Exception as e:
@@ -235,7 +235,7 @@ class CreateLbMember(context.context):
                 "member": {
                     "name": self.config.get("name", "test-member"),
                     "protocol_port": self.config.get("protocol_port"),
-                    "pool_id": self.config.get("pool_id"),
+                    "pool_id": self.config.get("pool_id", self.context["pool_id"]),
                     "priority": self.config.get("priority"),
                     "weight": self.config.get("weight")
                 }
