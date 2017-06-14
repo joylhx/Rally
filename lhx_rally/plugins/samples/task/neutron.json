@@ -1,0 +1,24 @@
+[
+    {"Neutron.create_network": {
+        "args": {
+            "name": "test_subnet",
+            "cidr": "9.9.9.0/24"
+        },
+        "context": {
+            "create_network": {
+                "name": "test_network"
+            },
+            "create_router": {
+                "name": "test_router",
+                "external_dateway_info": {
+                    "network_id": "f64f4451-7441-4a81-8cac-a4c4acd4cc40"
+                }
+            }
+        },
+        "runner": {
+            "type": "serial",
+            "time": 1
+        }
+    }
+    }
+]
