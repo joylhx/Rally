@@ -3,30 +3,76 @@
 
 from rally.plugins.openstack import scenario
 from rally.task import atomic
+from rally.common import logging
 
+
+LOG = logging.getLogger(__name__)
 
 @scenario.configure(name="Neutron.create_different_protocol_pools")
-class CreatePools(scenario.OpenStackScenario):
+class CreatePoolsAndDelete(scenario.OpenStackScenario):
 
     @atomic.action_timer("create_pool")
     def _create_pool(self, body):
-        client = self.clients("neutron")
-        client.create_pool(body)
+        try:
+            pools = self.clients("neutron").create_pool(body)["pool"]["id"]
+            LOG.debug("LbPool '%s' has create." % pools)
+        except Exception as e:
+            msg = "Can't create pool: %s" % e
+            if logging.is_debug():
+                LOG.exception(msg)
+            else:
+                LOG.warning(msg)
+        return pools
+
+    @atomic.action_timer("delete_pool")
+    def _delete_pool(self, pools):
+        try:
+            self.clients("neutron").delete_pool(pools)
+            LOG.debug("LbPool '%s' has delete." % pools)
+        except Exception as e:
+            msg = "Can't delete pool: %s" % e
+            if logging.is_debug():
+                LOG.exception(msg)
+            else:
+                LOG.warning(msg)
 
     def run(self, **kwargs):
-        self._create_pool(kwargs)
+        pools = self._create_pool(kwargs)
+        self._delete_pool(pools)
 
 
 @scenario.configure(name="Neutron.create_member_and_delete")
-class CreateMembers(scenario.OpenStackScenario):
-    import pdb;pdb.set_trace()
+class CreateMembersAndDelete(scenario.OpenStackScenario):
+
     @atomic.action_timer("create_member")
     def _create_member(self, body):
-        client = self.clients("neutron")
-        client.create_member(body)
+        try:
+            import pdb;pdb.set_trace()
+            members = self.clients("neutron").create_member(body)["member"]["id"]
+            LOG.debug("Lbmember '%s' has create." % members)
+        except Exception as e:
+            msg = "Can't create Lbmember: %s" % e
+            if logging.is_debug():
+                LOG.exception(msg)
+            else:
+                LOG.warning(msg)
+        return members
+
+    @atomic.action_timer("delete_member")
+    def _delete_member(self, members):
+        try:
+            self.clients("neutron").delete_member(members)
+            LOG.debug("Lbmember '%s' has delete." % members)
+        except Exception as e:
+            msg = "Can't delete member: %s" % e
+            if logging.is_debug():
+                LOG.exception(msg)
+            else:
+                LOG.warning(msg)
 
     def run(self, **kwargs):
-        self._create_member(kwargs)
+        members= self._create_member(kwargs)
+        self._delete_member(members)
 
 @scenario.configure(name="Neutron.create_vip_and_delete")
 class CreateVipAndDelete(scenario.OpenStackScenario):
@@ -36,13 +82,9 @@ class CreateVipAndDelete(scenario.OpenStackScenario):
         client = self.clients("neutron")
         client.create_vip(body)
 
-   # @atomic.action_timer("delete_vip")
-   # def _delete_vip(self, **kwargs):
-   #     self.clients("neutron").delete_vip(self.context["vip"]["id"])
 
     def run(self, **kwargs):
         self._create_vip(kwargs)
-    #    self._delete_vip(kwargs)
 
 @scenario.configure(name="Neutron.create_healthmonitor_and_delete")
 class CreateHealthmonitorAndDelete(scenario.OpenStackScenario):
