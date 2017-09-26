@@ -1,0 +1,26 @@
+#{% set flavor_name = flavor_name or "m1.small" %}
+---
+  NovaServers.rebuild_server_and_associated_floatingip:
+  - args:
+      to_image: "0face2c5-58c2-44a4-90bb-43bb6ddf1489"
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+    context:
+      create_floatingip:
+        external_net: "f64f4451-7441-4a81-8cac-a4c4acd4cc40"
+      create_server:
+        name: "rally_test"
+        nics:
+        -
+          net-id: "5d512551-d7b6-4e7b-a8d6-3e9a4c6f01d7"
+        block_device:
+          -
+            boot_index: 0
+            uuid: "0face2c5-58c2-44a4-90bb-43bb6ddf1489"
+            source_type: "image"
+            destination_type: "volume"
+            volume_size: 10
+
+

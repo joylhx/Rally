@@ -1,0 +1,19 @@
+---
+  Lbaas.one_policy_has_many_rules:
+  - args:
+      l7rule:
+        type: "backendServerId"
+        key: "serverId"
+        value: "11422250-b640-482f-84a1-b5317080b30a"
+        compare_type: "integerEq"
+        compare_value: "18096677"
+    context:
+      l7policy_context:
+        priority: 1
+        action: "addHeader"
+        key: "Set-Cookie"
+        value: "Set-Cookie:test=1234; Max-Age=600"
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1

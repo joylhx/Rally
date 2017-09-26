@@ -1,0 +1,16 @@
+---
+  Lbaas.create_and_delete_l7rule:
+  - args:
+      l7rule:
+          type: "backendServerId"
+          key: "serverId"
+          value: "11422250-b640-482f-84a1-b5317080b30a"
+          compare_type: "integerEq"
+          compare_value: "18096677"
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+
+
+

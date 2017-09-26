@@ -1,0 +1,2669 @@
+{% set test_times = test_times or 1 %}
+{% set test_concurrency = test_concurrency or 1 %}
+{% set flavor = flavor or "7" %}
+{% set net_id = net_id or "540613a8-e4d6-47d5-8660-dcdb7339cff5" %}
+{% set datastore = datastore or "mysql" %}
+{% set datastore_version = datastore_version or "5.6" %}
+{% set flavor_name = flavor_name or "m1.tiny" %}
+{% set image_name = image_name or "cirros-0.3.4-x86_64" %}
+{% set availability_zone = availability_zone or "nova" %}
+
+---
+  TroveBackups.create_and_delete_backup:
+    -
+      args:
+        incremental: False
+        description: ""
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveBackups.create_and_show_backup:
+    -
+      args:
+        incremental: False
+        description: ""
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveBackups.create_incremental_backup_and_delete_parent:
+    -
+      args:
+        incremental: True
+        description: ""
+        child_backups_counts: 1
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveBackups.create_incremental_backup_and_delete:
+    -
+      args:
+        incremental: True
+        description: ""
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveBackups.create_incremental_backup:
+    -
+      args:
+        incremental: True
+        description: ""
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+        backup: {}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveBackups.list_backups:
+    -
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveConfigurations.create_and_delete_configuration:
+    -
+      args:
+        values:
+          wait_timeout: 30
+        datastore: "{{datastore}}"
+        datastore_version: "{{datastore_version}}"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveConfigurations.create_and_edit_configuration:
+    -
+      args:
+        values:
+          wait_timeout: 30
+        datastore: "{{datastore}}"
+        datastore_version: "{{datastore_version}}"
+        update_values:
+          max_connections: 100
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveConfigurations.create_attach_and_detach_configuration:
+    -
+      args:
+        values:
+          wait_timeout: 30
+        datastore: "{{datastore}}"
+        datastore_version: "{{datastore_version}}"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveConfigurations.list_configurations:
+    -
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveDatabases.create_and_delete_database:
+    -
+      args:
+        databases:
+          [name: "coffee-test"]
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveDatabases.list_databases:
+    -
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveInstances.create_and_delete_instance:
+    -
+      args:
+        flavor: "{{flavor}}"
+        datastore: "{{datastore}}"
+        datastore_version: "{{datastore_version}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        volume: 
+          size: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveInstances.create_and_delete_replica_instance:
+    -
+      args:
+        flavor: "{{flavor}}"
+        datastore: "{{datastore}}"
+        datastore_version: "{{datastore_version}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        volume: 
+          size: 5
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveInstances.create_instance_from_backup:
+    -
+      args:
+        flavor: "{{flavor}}"
+        datastore: "{{datastore}}"
+        datastore_version: "{{datastore_version}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        volume: 
+          size: 1
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+        backup: {}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveInstances.create_replica_and_detach:
+    -
+      args:
+        flavor: "{{flavor}}"
+        datastore: "{{datastore}}"
+        datastore_version: "{{datastore_version}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        volume: 
+          size: 5
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveInstances.force_delete_building_instance:
+    -
+      args:
+        flavor: "{{flavor}}"
+        datastore: "{{datastore}}"
+        datastore_version: "{{datastore_version}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        volume: 
+          size: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveInstances.list_instances:
+    -
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+    -
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveInstances.restart_and_get_instance:
+    -
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveLogs.enable_and_disable_log:
+    -
+      args:
+        log_name: "general"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveLogs.list_logs:
+    -
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveLogs.publish_and_disable_log:
+    -
+      args:
+        log_name: "general"
+        publish_args:
+          disable: False
+        disable_args:
+          discard: True
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveLogs.publish_and_discard_log:
+    -
+      args:
+        log_name: "general"
+        publish_args:
+          disable: True
+          discard: True
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveLogs.show_log:
+    -
+      args:
+        log_name: "general"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveUsers.create_and_delete_user:
+    -
+      args:
+        users:
+          - 
+            name: "coffee"
+            password: "abc123"
+            databases: []
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  TroveUsers.list_users:
+    -
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        instance:
+          flavor: "{{flavor}}"
+          datastore: "{{datastore}}"
+          datastore_version: "{{datastore_version}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          volume: 
+            size: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  NovaServers.boot_and_associate_floating_ip:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        existing_network: {}
+
+  NovaServers.boot_and_live_migrate_server:
+    -
+      args:
+        flavor:
+          name: "{{flavor_name}}"
+        image:
+          name: "{{image_name}}"
+        block_migration: false
+        nics:
+          [net-id: "{{net_id}}"]
+        force_delete: true
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.boot_and_delete_multiple_servers:
+    -
+      args:
+        image:
+          name: "{{image_name}}"
+        flavor:
+          name: "{{flavor_name}}"
+        count: 5
+        force_delete: true
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.boot_and_delete_server:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        force_delete: true
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.boot_and_list_server:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        detailed: True
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.boot_and_migrate_server:
+    -
+      args:
+        flavor:
+          name: "{{flavor_name}}"
+        image:
+          name: "{{image_name}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        force_delete: true
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  # NovaServers.boot_and_rebuild_server:
+  # - args:
+  #     flavor:
+  #       name: "{{flavor_name}}"
+  #     from_image:
+  #       name: "{{image_name}}"
+  #     to_image:
+  #       name: "{{image_name}}"
+  #     nics:
+  #       [net-id: "{{net_id}}"]
+  #   runner:
+  #     type: "constant"
+  #     times: {{test_times}}
+  #     concurrency: {{test_concurrency}}
+
+  NovaServers.boot_and_show_server:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.boot_and_bounce_server:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        force_delete: true
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+        actions:
+          -
+            hard_reboot: 1
+          -
+            soft_reboot: 1
+          -
+            stop_start: 1
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.boot_server_from_volume_and_delete:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        volume_size: 10
+        force_delete: true
+        nics:
+          [net-id: "{{net_id}}"]
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.boot_server_from_volume_and_resize:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        to_flavor:
+            name: "m1.small"
+        confirm: true
+        volume_size: 1
+        force_delete: true
+        do_delete: true
+        boot_server_kwargs:
+          nics:
+            [net-id: "{{net_id}}"]
+        create_volume_kwargs: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  # NovaServers.boot_server_from_volume_snapshot:
+  #   -
+  #     args:
+  #       flavor:
+  #           name: "{{flavor_name}}"
+  #       image:
+  #           name: "{{image_name}}"
+  #       volume_size: 10
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  NovaServers.boot_server_from_volume:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        volume_size: 10
+        nics:
+          [net-id: "{{net_id}}"]
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  # NovaServers.boot_lock_unlock_and_delete:
+  #   -
+  #     args:
+  #       flavor:
+  #           name: "{{flavor_name}}"
+  #       image:
+  #           name: "{{image_name}}"
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # NovaServers.boot_server_and_attach_interface:
+  #   -
+  #     args:
+  #       flavor:
+  #           name: "{{flavor_name}}"
+  #       image:
+  #           name: "{{image_name}}"
+  #       nics:
+  #         [net-id: "{{net_id}}"]
+  #       network_create_args: {}
+  #       subnet_create_args: {}
+  #       subnet_cidr_start: "1.1.0.0/30"
+  #       boot_server_args: {}
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     context:
+  #       network: {}
+  #       quotas:
+  #         neutron:
+  #           network: -1
+  #           subnet: -1
+  #     sla:
+  #       failure_rate:
+  #         max: 0
+
+  NovaServers.boot_server_and_list_interfaces:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+      sla:
+        failure_rate:
+          max: 0
+
+  NovaServers.boot_server_associate_and_dissociate_floating_ip:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        existing_network: {}
+      sla:
+        failure_rate:
+          max: 0
+
+
+  NovaServers.boot_server_attach_created_volume_and_live_migrate:
+  - args:
+      flavor:
+        name: "{{flavor_name}}"
+      image:
+        name: "{{image_name}}"
+      size: 10
+      block_migration: false
+      boot_server_kwargs:
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      create_volume_kwargs: {}
+      force_delete: true
+    runner:
+      type: "constant"
+      times: {{test_times}}
+      concurrency: {{test_concurrency}}
+
+  NovaServers.boot_server_attach_created_volume_and_resize:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        to_flavor:
+            name: "m1.small"
+        confirm: true
+        volume_size: 1
+        force_delete: false
+        do_delete: true
+        boot_server_kwargs:
+          nics:
+            [net-id: "{{net_id}}"]
+          block_device_mapping_v2:
+            -
+              boot_index: 0
+              source_type: "image"
+              destination_type: "volume"
+              delete_on_termination: true
+              volume_size: 10
+        create_volume_kwargs: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.boot_server_from_volume_and_live_migrate:
+    -
+      args:
+        flavor:
+          name: "{{flavor_name}}"
+        image:
+          name: "{{image_name}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        block_migration: false
+        volume_size: 10
+        force_delete: true
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.snapshot_server:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 1
+        force_delete: true
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaFlavors.create_and_delete_flavor:
+    -
+      runner:
+        type: "constant"
+        concurrency: {{test_concurrency}}
+        times: {{test_times}}
+      args:
+        ram: 500
+        vcpus : 1
+        disk: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  NovaFlavors.create_and_get_flavor:
+    -
+      runner:
+        type: "constant"
+        concurrency: {{test_concurrency}}
+        times: {{test_times}}
+      args:
+        ram: 500
+        vcpus : 1
+        disk: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  NovaFlavors.create_and_list_flavor_access:
+    -
+      args:
+        ram: 500
+        vcpus: 1
+        disk: 1
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaFlavors.create_flavor_and_add_tenant_access:
+    -
+      runner:
+        type: "constant"
+        concurrency: {{test_concurrency}}
+        times: {{test_times}}
+      args:
+        ram: 500
+        vcpus : 1
+        disk: 1
+      sla:
+        failure_rate:
+          max: 0
+
+  NovaFlavors.create_flavor_and_set_keys:
+    -
+      runner:
+        type: "constant"
+        concurrency: {{test_concurrency}}
+        times: {{test_times}}
+      args:
+        ram: 500
+        vcpus : 1
+        disk: 1
+        extra_specs:
+          quota:disk_read_bytes_sec: 10240
+      sla:
+        failure_rate:
+          max: 0
+
+  NovaFlavors.create_flavor:
+    -
+      args:
+        ram: 500
+        vcpus: 1
+        disk: 1
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaFlavors.list_flavors:
+    -
+      args:
+        detailed: True
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.list_servers:
+    -
+      args:
+        detailed: True
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        servers:
+          flavor:
+              name: "{{flavor_name}}"
+          image:
+              name: "{{image_name}}"
+          nics:
+            [net-id: "{{net_id}}"]
+          servers_per_tenant: 2
+
+  NovaServices.list_services:
+    -
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.pause_and_unpause_server:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        force_delete: true
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.resize_server:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        to_flavor:
+            name: "m1.small"
+        confirm: true
+        force_delete: true
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  NovaServers.resize_shutoff_server:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        to_flavor:
+            name: "m1.small"
+        confirm: true
+        force_delete: true
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  NovaServers.suspend_and_resume_server:
+    -
+      args:
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        force_delete: true
+        nics:
+          [net-id: "{{net_id}}"]
+        block_device_mapping_v2:
+          -
+            boot_index: 0
+            source_type: "image"
+            destination_type: "volume"
+            delete_on_termination: true
+            volume_size: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  CinderVolumes.create_and_attach_volume:
+    -
+      args:
+          size: 10
+          image:
+            name: "{{image_name}}"
+          flavor:
+            name: "{{flavor_name}}"
+          create_volume_params:
+            availability_zone: "{{availability_zone}}"
+          create_vm_params:
+            force_delete: true
+            nics:
+              [net-id: "{{net_id}}"]
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+    -
+      args:
+        size:
+          min: 1
+          max: 5
+        flavor:
+            name: "{{flavor_name}}"
+        image:
+            name: "{{image_name}}"
+        create_volume_params:
+            availability_zone: "{{availability_zone}}"
+        create_vm_params:
+          force_delete: true
+          nics:
+            [net-id: "{{net_id}}"]
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  CinderVolumes.create_and_delete_snapshot:
+    -
+      args:
+          force: false
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        volumes:
+          size: 1
+
+  CinderVolumeTypes.create_and_delete_volume_type:
+    -
+      args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  CinderVolumes.create_and_delete_volume:
+    -
+      args:
+        size: 1
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+    -
+      args:
+        size:
+          min: 1
+          max: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  CinderVolumes.create_and_extend_volume:
+    -
+      args:
+        size: 1
+        new_size: 2
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+    -
+      args:
+        size:
+          min: 1
+          max: 5
+        new_size:
+          min: 6
+          max: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  CinderQos.create_and_get_qos:
+    -
+      args:
+        specs:
+          consumer: "both"
+          write_iops_sec: "10"
+          read_iops_sec: "1000"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  CinderVolumeTypes.create_and_get_volume_type:
+    -
+      args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  CinderVolumes.create_and_get_volume:
+    -
+      args:
+        size: 1
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+    -
+      args:
+        size:
+          min: 1
+          max: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  CinderQos.create_and_list_qos:
+    -
+      args:
+        specs:
+          consumer: "front-end"
+          total_iops_sec: "10"
+          total_bytes_sec: "1000"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  CinderVolumes.create_and_list_snapshots:
+    -
+      args:
+        force: False
+        detailed: True
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        volumes:
+          size: 1
+
+  CinderVolumes.create_and_list_volume_backups:
+    -
+      args:
+        size: 1
+        detailed: True
+        do_delete: True
+        create_volume_kwargs: {}
+        create_backup_kwargs: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  CinderVolumeTypes.create_and_list_volume_types:
+    -
+      args:
+        description: "rally tests creating types"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  CinderVolumes.create_and_list_volume:
+    -
+      args:
+        size: 1
+        detailed: True
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+    -
+      args:
+        size:
+          min: 1
+          max: 5
+        detailed: True
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  CinderVolumes.create_and_restore_volume_backup:
+    -
+      args:
+        size: 1
+        do_delete: True
+        create_volume_kwargs: {}
+        create_backup_kwargs: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  # CinderVolumeTypes.create_and_set_volume_type_keys:
+  #   -
+  #     args:
+  #       volume_type_key:
+  #         volume_backend_name: "LVM_iSCSI"
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     sla:
+  #       failure_rate:
+  #         max: 0
+
+  CinderVolumes.create_and_update_volume:
+    -
+      args:
+        update_volume_kwargs:
+           description: "desc_updated"
+        create_volume_kwargs: {}
+        size: 1
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  CinderVolumes.create_and_upload_volume_to_image:
+    -
+      args:
+        size: 1
+        force: false
+        container_format: "bare"
+        disk_format: "raw"
+        do_delete: true
+        image:
+          name: "{{image_name}}"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+    -
+      args:
+        size:
+          min: 1
+          max: 5
+        force: false
+        container_format: "bare"
+        disk_format: "raw"
+        do_delete: true
+        image:
+          name: "{{image_name}}"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  CinderVolumes.create_from_volume_and_delete_volume:
+    -
+      args:
+        size: 1
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        volumes:
+          size: 1
+    -
+      args:
+        size:
+          min: 1
+          max: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        volumes:
+          size: 1  
+
+  CinderVolumes.create_nested_snapshots_and_attach_volume:
+    -
+      args:
+          size:
+              min: 1
+              max: 5
+          nested_level: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        servers:
+          image:
+            name: "{{image_name}}"
+          flavor:
+            name: "{{flavor_name}}"
+          servers_per_tenant: 2
+          nics:
+            [net-id: "{{net_id}}"]
+
+  CinderVolumes.create_snapshot_and_attach_volume:
+    -
+      args:
+          size:
+              min: 1
+              max: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        servers:
+          image:
+            name: "{{image_name}}"
+          flavor:
+            name: "{{flavor_name}}"
+          servers_per_tenant: 2
+          nics:
+            [net-id: "{{net_id}}"]
+    -
+      args:
+          volume_type: "test"
+          size:
+              min: 1
+              max: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        servers:
+          image:
+            name: "{{image_name}}"
+          flavor:
+            name: "{{flavor_name}}"
+          servers_per_tenant: 2
+          nics:
+            [net-id: "{{net_id}}"]
+        volume_types:
+          - "test"
+
+  CinderVolumes.create_volume_backup:
+    -
+      args:
+        size: 1
+        do_delete: True
+        create_volume_kwargs: {}
+        create_backup_kwargs: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  CinderVolumes.create_volume_from_snapshot:
+    -
+      args:
+          do_delete: true
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        volumes:
+          size: 1
+
+  CinderVolumes.create_volume:
+    -
+      args:
+        size: 1
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+    -
+      args:
+        size:
+          min: 1
+          max: 5
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+
+  CinderVolumes.list_types:
+    -
+      args:
+        is_public: true
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  CinderVolumes.list_volumes:
+    -
+      args:
+        detailed: True
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        volumes:
+          size: 1
+          volumes_per_tenant: 4
+
+  NeutronNetworks.create_and_delete_floating_ips:
+    -
+      args:
+        floating_network: "net04_ext"
+        floating_ip_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            floatingip: -1
+
+  NeutronLoadbalancerV1.create_and_delete_healthmonitors:
+    -
+      args:
+        healthmonitor_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            health_monitor: -1
+
+  NeutronNetworks.create_and_delete_networks:
+    -
+      args:
+        network_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            network: -1
+
+  NeutronLoadbalancerV1.create_and_delete_pools:
+    -
+      args:
+        pool_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+            pool: -1
+
+  NeutronNetworks.create_and_delete_ports:
+    -
+      args:
+        network_create_args: {}
+        port_create_args: {}
+        ports_per_network: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            port: -1
+
+  NeutronNetworks.create_and_delete_routers:
+    -
+      args:
+        network_create_args: {}
+        subnet_create_args: {}
+        subnet_cidr_start: "1.1.0.0/30"
+        subnets_per_network: 2
+        router_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+            router: -1
+
+  NeutronSecurityGroup.create_and_delete_security_groups:
+    -
+      args:
+        security_group_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            security_group: -1
+
+  NeutronNetworks.create_and_delete_subnets:
+    -
+      args:
+        network_create_args: {}
+        subnet_create_args: {}
+        subnet_cidr_start: "1.1.0.0/30"
+        subnets_per_network: 2
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+
+  NeutronLoadbalancerV1.create_and_delete_vips:
+    -
+      args:
+        vip_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        lbaas:
+          pool: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+            pool: -1
+            vip: -1
+
+  NeutronNetworks.create_and_list_floating_ips:
+    -
+      args:
+        floating_network: "net04_ext"
+        floating_ip_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            floatingip: -1
+
+  NeutronLoadbalancerV1.create_and_list_healthmonitors:
+    -
+      args:
+        healthmonitor_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            health_monitor: -1
+
+  NeutronNetworks.create_and_list_networks:
+    -
+      args:
+        network_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            network: -1
+      sla:
+        failure_rate:
+          max: 0
+
+  NeutronLoadbalancerV1.create_and_list_pools:
+    -
+      args:
+        pool_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+            pool: -1
+
+  NeutronNetworks.create_and_list_ports:
+    -
+      args:
+        network_create_args: {}
+        port_create_args: {}
+        ports_per_network: 10
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            port: -1
+
+  NeutronNetworks.create_and_list_routers:
+    -
+      args:
+        network_create_args: {}
+        subnet_create_args: {}
+        subnet_cidr_start: "1.1.0.0/30"
+        subnets_per_network: 2
+        router_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+            router: -1
+
+  NeutronSecurityGroup.create_and_list_security_groups:
+    -
+      args:
+        security_group_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            security_group: -1
+
+  NeutronNetworks.create_and_list_subnets:
+    -
+      args:
+        network_create_args: {}
+        subnet_create_args: {}
+        subnet_cidr_start: "1.1.0.0/30"
+        subnets_per_network: 2
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+
+  NeutronLoadbalancerV1.create_and_list_vips:
+    -
+      args:
+        vip_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+            pool: -1
+            vip: -1
+
+  NeutronNetworks.create_and_show_network:
+    -
+      args:
+        network_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            network: -1
+      sla:
+        failure_rate:
+          max: 0
+
+  NeutronNetworks.create_and_show_ports:
+    -
+      args:
+        network_create_args: {}
+        port_create_args: {}
+        ports_per_network: 2
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            port: -1
+      sla:
+        failure_rate:
+          max: 0
+
+  NeutronNetworks.create_and_show_routers:
+    -
+      args:
+        subnet_cidr_start: "1.1.0.0/30"
+        subnets_per_network: 2
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+            router: -1
+
+  NeutronSecurityGroup.create_and_show_security_group:
+    -
+      args:
+        security_group_create_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            security_group: -1
+      sla:
+        failure_rate:
+          max: 0
+
+  NeutronNetworks.create_and_show_subnets:
+    -
+      args:
+        network_create_args: {}
+        subnet_create_args: {}
+        subnet_cidr_start: "1.1.0.0/30"
+        subnets_per_network: 2
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+      sla:
+        failure_rate:
+          max: 0
+
+  NeutronLoadbalancerV1.create_and_update_healthmonitors:
+    -
+      args:
+        healthmonitor_create_args: {}
+        healthmonitor_update_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            health_monitor: -1
+
+  NeutronNetworks.create_and_update_networks:
+    -
+      args:
+        network_create_args: {}
+        network_update_args:
+            admin_state_up: False
+            name: "_updated"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            network: -1
+
+  NeutronLoadbalancerV1.create_and_update_pools:
+    -
+      args:
+        pool_create_args: {}
+        pool_update_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+            pool: -1
+
+  NeutronNetworks.create_and_update_ports:
+    -
+      args:
+        network_create_args: {}
+        port_create_args: {}
+        ports_per_network: 5
+        port_update_args:
+            admin_state_up: False
+            device_id: "dummy_id"
+            device_owner: "dummy_owner"
+            name: "_port_updated"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            port: -1
+
+  NeutronNetworks.create_and_update_routers:
+    -
+      args:
+        network_create_args: {}
+        subnet_create_args: {}
+        subnet_cidr_start: "1.1.0.0/30"
+        subnets_per_network: 2
+        router_create_args: {}
+        router_update_args:
+            admin_state_up: False
+            name: "_router_updated"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+            router: -1
+
+  NeutronSecurityGroup.create_and_update_security_groups:
+    -
+      args:
+        security_group_create_args: {}
+        security_group_update_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        quotas:
+          neutron:
+            security_group: -1
+
+  NeutronNetworks.create_and_update_subnets:
+    -
+      args:
+        network_create_args: {}
+        subnet_create_args: {}
+        subnet_cidr_start: "1.4.0.0/16"
+        subnets_per_network: 2
+        subnet_update_args:
+            enable_dhcp: False
+            name: "_subnet_updated"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+
+  NeutronLoadbalancerV1.create_and_update_vips:
+    -
+      args:
+        vip_create_args: {}
+        vip_update_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        network: {}
+        quotas:
+          neutron:
+            network: -1
+            subnet: -1
+            pool: -1
+            vip: -1
+
+  NeutronNetworks.list_agents:
+    -
+      args:
+        agent_args: {}
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      sla:
+        failure_rate:
+          max: 0
+
+  Neutron.create_different_protocol_pools:
+    -
+      args:
+        pool:
+          name: "test-pool"
+          lb_method: "ROUND_ROBIN"
+          protocol: "HTTP"
+          subnet_id: "f30db620-862c-4d3a-9e1c-d29f326389e8"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        create_network:
+          name: "test-network"
+        create_router:
+          name: "test-router"
+          external_gateway_info:
+            network_id: "f64f4451-7441-4a81-8cac-a4c4acd4cc40"
+        create_subnet:
+          subnet_name: "test-subnet"
+          cidr: "8.8.8.0/24"
+    -
+      args:
+        pool:
+          name: "test-pool"
+          lb_method: "SOURCE_IP"
+          protocol: "HTTPS"
+          subnet_id: "f30db620-862c-4d3a-9e1c-d29f326389e8"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        create_network:
+          name: "test-network"
+        create_router:
+          name: "test-router"
+          external_gateway_info:
+            network_id: "f64f4451-7441-4a81-8cac-a4c4acd4cc40"
+        create_subnet:
+          subnet_name: "test-subnet"
+          cidr: "8.8.8.0/24"
+    -
+      args:
+        pool:
+          name: "test-pool"
+          lb_method: "LEAST_CONNECTIONS"
+          protocol: "TCP"
+          subnet_id: "f30db620-862c-4d3a-9e1c-d29f326389e8"
+      runner:
+        type: "constant"
+        times: {{test_times}}
+        concurrency: {{test_concurrency}}
+      context:
+        create_network:
+          name: "test-network"
+        create_router:
+          name: "test-router"
+          external_gateway_info:
+            network_id: "f64f4451-7441-4a81-8cac-a4c4acd4cc40"
+        create_subnet:
+          subnet_name: "test-subnet"
+          cidr: "8.8.8.0/24"
+
+  # CeilometerMeters.list_meters:
+  #   -
+  #     runner:
+  #       type: constant
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     context:
+  #       ceilometer:
+  #         counter_name: "cpu_util"
+  #         counter_type: "gauge"
+  #         counter_unit: "%"
+  #         counter_volume: 100
+  #         resources_per_tenant: 100
+  #         samples_per_resource: 100
+  #         timestamp_interval: 10
+  #         metadata_list:
+  #           -
+  #             status: "active"
+  #             name: "rally benchmark on"
+  #             deleted: "false"
+  #           -
+  #             status: "terminated"
+  #             name: "rally benchmark off"
+  #             deleted: "true"
+  #     args:
+  #       limit: 50
+  #       metadata_query:
+  #         status: "terminated"
+
+  # CeilometerResource.list_resources:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     context:
+  #       ceilometer:
+  #         counter_name: "benchmark_meter"
+  #         counter_type: "gauge"
+  #         counter_unit: "%"
+  #         counter_volume: 100
+  #         resources_per_tenant: 100
+  #         samples_per_resource: 100
+  #         timestamp_interval: 10
+  #         metadata_list:
+  #           -
+  #             status: "active"
+  #             name: "rally benchmark on"
+  #             deleted: "false"
+  #           -
+  #             status: "terminated"
+  #             name: "rally benchmark off"
+  #             deleted: "true"
+  #     args:
+  #       limit: 50
+  #       metadata_query:
+  #         status: "terminated"
+
+  # CeilometerAlarms.create_alarm_and_get_history:
+  #   -
+  #     args:
+  #       meter_name: "ram_util"
+  #       threshold: 10.0
+  #       type: "threshold"
+  #       state: "ok"
+  #       statistic: "avg"
+  #       alarm_actions: ["http://localhost:8776/alarm"]
+  #       ok_actions: ["http://localhost:8776/ok"]
+  #       insufficient_data_actions: ["http://localhost:8776/notok"]
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerAlarms.create_alarm:
+  #   -
+  #     args:
+  #       meter_name: "ram_util"
+  #       threshold: 10.0
+  #       type: "threshold"
+  #       statistic: "avg"
+  #       alarm_actions: ["http://localhost:8776/alarm"]
+  #       ok_actions: ["http://localhost:8776/ok"]
+  #       insufficient_data_actions: ["http://localhost:8776/notok"]
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerAlarms.create_and_delete_alarm:
+  #   -
+  #     args:
+  #       meter_name: "ram_util"
+  #       threshold: 10.0
+  #       type: "threshold"
+  #       statistic: "avg"
+  #       alarm_actions: ["http://localhost:8776/alarm"]
+  #       ok_actions: ["http://localhost:8776/ok"]
+  #       insufficient_data_actions: ["http://localhost:8776/notok"]
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerAlarms.create_and_get_alarm:
+  #   -
+  #     args:
+  #       meter_name: "ram_util"
+  #       threshold: 10.0
+  #       type: "threshold"
+  #       statistic: "avg"
+  #       alarm_actions: ["http://localhost:8776/alarm"]
+  #       ok_actions: ["http://localhost:8776/ok"]
+  #       insufficient_data_actions: ["http://localhost:8776/notok"]
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     sla:
+  #       failure_rate:
+  #         max: 0
+
+  # CeilometerAlarms.create_and_list_alarm:
+  #   -
+  #     args:
+  #       meter_name: "ram_util"
+  #       threshold: 10.0
+  #       type: "threshold"
+  #       statistic: "avg"
+  #       alarm_actions: ["http://localhost:8776/alarm"]
+  #       ok_actions: ["http://localhost:8776/ok"]
+  #       insufficient_data_actions: ["http://localhost:8776/notok"]
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerQueries.create_and_query_alarm_history:
+  #   -
+  #     args:
+  #       orderby: !!null
+  #       limit: !!null
+  #       meter_name: "ram_util"
+  #       threshold: 10.0
+  #       type: "threshold"
+  #       statistic: "avg"
+  #       alarm_actions: ["http://localhost:8776/alarm"]
+  #       ok_actions: ["http://localhost:8776/ok"]
+  #       insufficient_data_actions: ["http://localhost:8776/notok"]
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerQueries.create_and_query_alarms:
+  #   -
+  #     args:
+  #       filter: {"and": [{"!=": {"state": "dummy_state"}},{"=": {"type": "threshold"}}]}
+  #       orderby: !!null
+  #       limit: 10
+  #       meter_name: "ram_util"
+  #       threshold: 10.0
+  #       type: "threshold"
+  #       statistic: "avg"
+  #       alarm_actions: ["http://localhost:8776/alarm"]
+  #       ok_actions: ["http://localhost:8776/ok"]
+  #       insufficient_data_actions: ["http://localhost:8776/notok"]
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerQueries.create_and_query_samples:
+  #   -
+  #     args:
+  #       filter: {"=": {"counter_unit": "instance"}}
+  #       orderby: !!null
+  #       limit: 10
+  #       counter_name: "cpu_util"
+  #       counter_type: "gauge"
+  #       counter_unit: "instance"
+  #       counter_volume: 1.0
+  #       resource_id: "resource_id"
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerAlarms.create_and_update_alarm:
+  #   -
+  #     args:
+  #       meter_name: "ram_util"
+  #       threshold: 10.0
+  #       type: "threshold"
+  #       statistic: "avg"
+  #       alarm_actions: ["http://localhost:8776/alarm"]
+  #       ok_actions: ["http://localhost:8776/ok"]
+  #       insufficient_data_actions: ["http://localhost:8776/notok"]
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerStats.create_meter_and_get_stats:
+  #   -
+  #     args:
+  #       user_id: "user-id"
+  #       resource_id: "resource-id"
+  #       counter_volume: 1.0
+  #       counter_unit: ""
+  #       counter_type: "cumulative"
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerEvents.create_user_and_get_event:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerEvents.create_user_and_list_events:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerEvents.create_user_and_list_event_types:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerTraits.create_user_and_list_trait_descriptions:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerTraits.create_user_and_list_traits:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerStats.get_stats:
+  #   -
+  #     runner:
+  #       type: constant
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     context:
+  #       ceilometer:
+  #         counter_name: "benchmark_meter"
+  #         counter_type: "gauge"
+  #         counter_unit: "%"
+  #         counter_volume: 100
+  #         resources_per_tenant: 100
+  #         samples_per_resource: 100
+  #         timestamp_interval: 10
+  #         metadata_list:
+  #           -
+  #             status: "active"
+  #             name: "rally benchmark on"
+  #             deleted: "false"
+  #           -
+  #             status: "terminated"
+  #             name: "rally benchmark off"
+  #             deleted: "true"
+  #     args:
+  #       meter_name: "benchmark_meter"
+  #       filter_by_user_id: true
+  #       filter_by_project_id: true
+  #       filter_by_resource_id: true
+  #       metadata_query:
+  #         status: "terminated"
+  #       period: 300
+  #       groupby: "resource_id"
+
+  # CeilometerResource.get_tenant_resources:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     context:
+  #       ceilometer:
+  #         counter_name: "cpu_util"
+  #         counter_type: "gauge"
+  #         counter_volume: 1.0
+  #         counter_unit: "instance"
+
+  # CeilometerAlarms.list_alarms:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+
+  # CeilometerSamples.list_matched_samples:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     context:
+  #       ceilometer:
+  #         counter_name: "network.es.port.incoming.bytes"
+  #         counter_type: "gauge"
+  #         counter_unit: "B"
+  #         counter_volume: 1.0
+  #         resources_per_tenant: 1
+  #         samples_per_resource: 1
+  #         timestamp_interval: 10
+  #     args:
+  #       limit: 50
+  #       filter_by_user_id: true
+  #       filter_by_project_id: true
+  #       filter_by_resource_id: true
+
+  # CeilometerMeters.list_matched_meters:
+  #   -
+  #     runner:
+  #       type: constant
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     context:
+  #       ceilometer:
+  #         counter_name: "benchmark_meter"
+  #         counter_type: "gauge"
+  #         counter_unit: "%"
+  #         counter_volume: 100
+  #         resources_per_tenant: 100
+  #         samples_per_resource: 100
+  #         timestamp_interval: 10
+  #         metadata_list:
+  #           -
+  #             status: "active"
+  #             name: "rally benchmark on"
+  #             deleted: "false"
+  #           -
+  #             status: "terminated"
+  #             name: "rally benchmark off"
+  #             deleted: "true"
+  #     args:
+  #       limit: 50
+  #       filter_by_user_id: true
+  #       filter_by_project_id: true
+  #       filter_by_resource_id: true
+  #       metadata_query:
+  #         status: "terminated"
+
+  # CeilometerResource.list_matched_resources:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     context:
+  #       ceilometer:
+  #         counter_name: "benchmark_meter"
+  #         counter_type: "gauge"
+  #         counter_unit: "%"
+  #         counter_volume: 100
+  #         resources_per_tenant: 100
+  #         samples_per_resource: 100
+  #         timestamp_interval: 10
+  #         metadata_list:
+  #           -
+  #             status: "active"
+  #             name: "rally benchmark on"
+  #             deleted: "false"
+  #           -
+  #             status: "terminated"
+  #             name: "rally benchmark off"
+  #             deleted: "true"
+  #     args:
+  #       limit: 50
+  #       filter_by_user_id: true
+  #       filter_by_project_id: true
+  #       metadata_query:
+  #         status: "terminated"
+
+  # CeilometerSamples.list_samples:
+  #   -
+  #     runner:
+  #       type: "constant"
+  #       times: {{test_times}}
+  #       concurrency: {{test_concurrency}}
+  #     context:
+  #       ceilometer:
+  #         counter_name: "network.es.port.incoming.bytes"
+  #         counter_type: "gauge"
+  #         counter_unit: "B"
+  #         counter_volume: 1.0
+  #         resources_per_tenant: 1
+  #         samples_per_resource: 1
+  #         timestamp_interval: 10
+  #     args:
+  #       limit: 5

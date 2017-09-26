@@ -1,0 +1,11 @@
+{
+    "Lbaas.list_multiple": [
+        {
+            "context": {},
+            "runner": {
+                "type": "serial",
+                "time": 1
+            }
+        }
+    ]
+}

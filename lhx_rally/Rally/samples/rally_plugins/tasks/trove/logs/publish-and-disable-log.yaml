@@ -1,0 +1,22 @@
+---
+  TroveLogs.publish_and_disable_log:
+    -
+      args:
+        log_name: "general"
+        publish_args:
+          disable: False
+        disable_args:
+          discard: True
+      runner:
+        type: "constant"
+        times: 1
+        concurrency: 1
+      context:
+        instance:
+          flavor: "6"
+          datastore: "mysql"
+          datastore_version: "5.5"
+          nics:
+            [net-id: "78783337-5e7d-4a65-b58e-3e5dae89de17"]
+          volume: 
+            size: 1

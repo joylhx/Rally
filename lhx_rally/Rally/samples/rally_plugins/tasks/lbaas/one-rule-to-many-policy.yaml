@@ -1,0 +1,19 @@
+---
+  Lbaas.one_rule_to_many_policies:
+  - args:
+      l7policy:
+          priority: 1
+          action: "addHeader"
+          key: "Set-Cookie"
+          value: "Set-Cookie:teset=123; Max-Age=600"
+    context:
+      l7rule_context:
+          type: "backendServerId"
+          key: "serverId"
+          value: "11422250-b640-482f-84a1-b5317080b30a"
+          compare_type: "integerEq"
+          compare_value: "18096677"
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1

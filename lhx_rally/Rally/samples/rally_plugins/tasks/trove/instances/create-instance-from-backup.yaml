@@ -1,0 +1,25 @@
+---
+  TroveInstances.create_instance_from_backup:
+    -
+      args:
+        flavor: "6"
+        datastore: "mysql"
+        datastore_version: "5.5"
+        nics:
+          [net-id: "78783337-5e7d-4a65-b58e-3e5dae89de17"]
+        volume: 
+          size: 1
+      runner:
+        type: "constant"
+        times: 1
+        concurrency: 1
+      context:
+        instance:
+          flavor: "6"
+          datastore: "mysql"
+          datastore_version: "5.5"
+          nics:
+            [net-id: "78783337-5e7d-4a65-b58e-3e5dae89de17"]
+          volume: 
+            size: 1
+        backup: {}

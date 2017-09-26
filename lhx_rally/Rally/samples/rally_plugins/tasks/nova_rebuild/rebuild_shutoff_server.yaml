@@ -1,0 +1,18 @@
+#{% set flavor_name = flavor_name or "m1.small" %}
+---
+  NovaServers.rebuild_shutoff_server:
+  - args:
+      flavor: 2
+      from_image: "0face2c5-58c2-44a4-90bb-43bb6ddf1489"
+      to_image: "0face2c5-58c2-44a4-90bb-43bb6ddf1489"
+      block_device_mapping_v2:
+        -
+          boot_index: 0
+          source_type: "image"
+          destination_type: "volume"
+          volume_size: 10
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+

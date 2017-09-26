@@ -1,0 +1,105 @@
+{% set flavor_name = flavor_name or "m1.large" %}
+---
+  NovaServers.boot_and_rebuild_server:
+  - args:
+      flavor:
+        name: "{{flavor_name}}"
+      from_image:
+        name: "cirros-0.3.4-x86_64"
+      to_image:
+        name: "cirros-0.3.4-x86_64"
+      block_device_mapping_v2:
+        -
+          boot_index: 0
+          source_type: "image"
+          destination_type: "volume"
+          volume_size: 10
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+  - args:
+      flavor:
+        name: "{{flavor_name}}"
+      from_image:
+        name: "wyhui_centos_httpd_iperf3"
+      to_image:
+        name: "Windows-Server-2012-R2-x86_64-eayun-1.2-testing"
+      block_device_mapping_v2:
+        -
+          boot_index: 0
+          source_type: "image"
+          destination_type: "volume"
+          volume_size: 50
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+  - args:
+      flavor:
+        name: "{{flavor_name}}"
+      from_image:
+        name: "Windows-Server-2012-R2-x86_64-eayun-1.2-testing"
+      to_image:
+        name: "wyhui_centos_httpd_iperf3"
+      block_device_mapping_v2:
+        -
+          boot_index: 0
+          source_type: "image"
+          destination_type: "volume"
+          volume_size: 50
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+  - args:
+      flavor:
+        name: "{{flavor_name}}"
+      from_image:
+        name: "Windows-Server-2008-E-x86_64-eayun-1.0-testing"
+      to_image:
+        name: "Windows-Server-2012-R2-x86_64-eayun-1.2-testing"
+      block_device_mapping_v2:
+        -
+          boot_index: 0
+          source_type: "image"
+          destination_type: "volume"
+          volume_size: 50
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+  - args:
+      flavor:
+        name: "{{flavor_name}}"
+      from_image:
+        name: "Windows-Server-2008-E-x86_64-eayun-1.0-testing"
+      to_image:
+        name: "CentOS-Server-6.5-x86_64-eayun-1.0-testing"
+      block_device_mapping_v2:
+        -
+          boot_index: 0
+          source_type: "image"
+          destination_type: "volume"
+          volume_size: 50
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+  - args:
+      flavor:
+        name: "{{flavor_name}}"
+      from_image:
+        name: "CentOS-Server-6.5-x86_64-eayun-1.0-testing"
+      to_image:
+        name: "Windows-Server-2008-E-x86_64-eayun-1.0-testing"
+      block_device_mapping_v2:
+        -
+          boot_index: 0
+          source_type: "image"
+          destination_type: "volume"
+          volume_size: 50
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1

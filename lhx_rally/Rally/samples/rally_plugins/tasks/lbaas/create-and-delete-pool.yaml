@@ -1,0 +1,10 @@
+---
+  Lbaas.create_different_protocol_pools:
+  - args:
+      name: "rally_pool"
+      lb_method: "SOURCE_IP"
+      protocol: "TCP"
+      subnet_id: "ee1e87be-dc50-489a-a2de-ab55178f4d18"
+    runner:
+      type: "serial"
+      time: 1

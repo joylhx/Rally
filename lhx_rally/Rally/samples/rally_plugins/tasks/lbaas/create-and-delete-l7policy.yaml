@@ -1,0 +1,46 @@
+---
+  Lbaas.create_and_delete_l7policy:
+  - args:
+      l7policy:
+          priority: 0
+          action: "addHeader"
+          key: "Set-Cookie"
+          value: "Set-Cookie:test=123; Max-Age=1200"
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+  - args:
+      l7policy:
+          priority: 255
+          action: "addHeader"
+          key: "Set-Cookie"
+          value: "Set-Cookie:test=123; Max-Age=0"
+          admin_state_down: True
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+  - args:
+      l7policy:
+          priority: 1
+          action: "addHeader"
+          key: "Set-Cookie"
+          value: "Set-Cookie:test=123; Max-Age=1"
+          pool_id: "8ccfd062-16f5-4378-9c32-d4dfdc39a7c2"
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+  - args:
+      l7policy:
+          priority: 1
+          action: "addHeader"
+          key: "Set-Cookie"
+          value: "Set-Cookie:test=123; Max=Age=86400"
+    runner:
+      type: "constant"
+      times: 1
+      concurrency: 1
+
+   

@@ -1,0 +1,21 @@
+---
+  Lbaas.create_member_and_delete:
+  - args:
+      name: "rally_member"
+      pool_id: "8ccfd062-16f5-4378-9c32-d4dfdc39a7c2"
+      address: "10.0.0.56"
+      protocol_port: "80"
+    runner:
+      type: "constant"
+      time: 1
+  - args:
+      name: "rally_member"
+      pool_id: "8ccfd062-16f5-4378-9c32-d4dfdc39a7c2"
+      address: "10.0.0.57"
+      protocol_port: "81"
+      priority: "0"
+    runner:
+      type: "constant"
+      time: 1
+
+

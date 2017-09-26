@@ -1,0 +1,14 @@
+---
+  TroveConfigurations.create_and_edit_configuration:
+    -
+      args:
+        values:
+          wait_timeout: 30
+        datastore: "mysql"
+        datastore_version: "5.5"
+        update_values:
+          max_connections: 100
+      runner:
+        type: "constant"
+        times: 1
+        concurrency: 1

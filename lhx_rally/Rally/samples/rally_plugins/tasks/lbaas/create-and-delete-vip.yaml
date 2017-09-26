@@ -1,0 +1,35 @@
+---
+  Lbaas.create_vip_and_delete:
+  - args:
+      vip:
+        name: "rally-vip"
+        protocol: "HTTP"
+        protocol_port: "80"
+        pool_id: "8ccfd062-16f5-4378-9c32-d4dfdc39a7c2"
+        subnet_id: "ee1e87be-dc50-489a-a2de-ab55178f4d18"
+    runner:
+      type: "serial"
+      time: 1
+#  - args:
+#      name: "rally-vip"
+#      protocol: "HTTP"
+#      protocol_port: "80"
+#      pool_id: "8ccfd062-16f5-4378-9c32-d4dfdc39a7c2"
+#      subnet_id: "ee1e87be-dc50-489a-a2de-ab55178f4d18"
+#      session_persistence:
+#        type: "HTTP_COOKIE"
+#    runner:
+#      type: "serial"
+#      time: 1
+#  - args:
+#      name : "rally-vip"
+#      protocol: "HTTP"
+#      protocol_port: "80"
+#      pool_id: "8ccfd062-16f5-4378-9c32-d4dfdc39a7c2"
+#      subnet_id: "ee1e87be-dc50-489a-a2de-ab55178f4d18"
+#      session_persistence:
+#        type: "APP_COOKIE"
+#        cookie_name: "test123"
+#    runner:
+#      type: "serial"
+#      time: 1

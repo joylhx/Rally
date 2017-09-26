@@ -1,0 +1,105 @@
+---
+  CeilometerSamples.list_samples_with_meter_name:
+    -
+      runner:
+        type: "constant"
+        times: 3
+        concurrency: 1
+      args:
+        limit: 50
+        meter_infos:
+          -
+            meter_name: "cpu_util"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.incoming.bytes"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.incoming.packets"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.incoming.internal.bytes"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.incoming.internal.packets"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.incoming.external.bytes"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.incoming.external.packets"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.outgoing.bytes"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.outgoing.packets"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.outgoing.internal.bytes"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.outgoing.internal.packets"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.outgoing.external.bytes"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "network.es.port.outgoing.external.packets"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+          -
+            meter_name: "memory.usage"
+            query:
+              -
+                field: "resource_id"
+                op: "eq"
+        interval: 70
+      context:
+        nova_servers:
+          image:
+            name: "CentOS-7-x86_64-GenericCloud-1601-raw"
+          flavor:
+            name: "m1.small"
+          nics:
+            [net-id: "78783337-5e7d-4a65-b58e-3e5dae89de17"]
+          servers_per_tenant: 1
+          force_delete: True

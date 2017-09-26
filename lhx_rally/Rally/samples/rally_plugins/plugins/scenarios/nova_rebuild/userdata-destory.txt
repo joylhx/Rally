@@ -1,0 +1,11 @@
+#cloud-config
+ssh_pwauth: true
+disable_root: 0
+user: root
+password: 'abc123'
+chpasswd:
+  expire: false
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDL3bh8mf1nWCNeatsGMbYuLBV8/Ctzh0DSOTuJEsmaEdVZdZvfJoLCxW86jToR8tE1L41SGFIMOHWiWQMH4P3tsCw1+k8TcrAicmUSRAd0nUVPpwToGg2ya0MuV5AsT6lT/UVSn1ierc74H/EdG6fYzb2Emp3M8YsV2pdOsniI+bCqvzy1wVpfHutdudCcYdVmRRg5nTXiwjmkLFzEsXq1McH8nDIR7uDvH2cyagP2ObnuNwE9z5Fw4dqTUc71cS4S9NZH3ISSfUhkm71UnV/AgnKkOJ5x4vWH8QGDRUkEvjQ1hSiN2UaENd9ulvD9NR/W7UKfzdxQTVu1Su1azWx7 lihongxia@lhx
+runcmd:
+  - [dd if=/dev/zero of=/dev/vda bs=1M count=1000]
