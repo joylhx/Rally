@@ -332,7 +332,7 @@ class LbL7ruleContext(context.Context):
         }
 
     }
-    
+
     def setup(self):
         try:
             client = osclients.Clients(self.context['users'][0]['credential']).neutron()
@@ -378,7 +378,7 @@ class LbL7policyContext(context.Context):
                 "type": "string"
             },
             "pool_id": {
-                "type": "string" 
+                "type": "string"
             },
             "priority": {
                 "type": "integer"
@@ -397,7 +397,7 @@ class LbL7policyContext(context.Context):
             }
         }
     }
-    
+
     def setup(self):
         try:
             client = osclients.Clients(self.context['users'][0]['credential']).neutron()
@@ -407,7 +407,7 @@ class LbL7policyContext(context.Context):
                     "action": self.config.get("action"),
                     "key": self.config.get("key"),
                     "value": self.config.get("value")
-                }   
+                }
             }
             self.context['l7policy'] = client.create_l7policy(body=body)['l7policy']['id']
             LOG.debug("Lbl7policy with id '%s' create successful." % self.context['l7policy'])
@@ -429,4 +429,4 @@ class LbL7policyContext(context.Context):
                 LOG.exception(msg)
             else:
                 LOG.warning(msg)
-            
+
